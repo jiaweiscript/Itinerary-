@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NYC Strategic Itinerary - Jiawei Hu</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* --- MATERIAL DESIGN 3 SYSTEM DARK TOKENS --- */
+        :root {
+            --md-sys-color-primary: #D0BCFF;
+            --md-sys-color-on-primary: #381E72;
+            --md-sys-color-primary-container: #4F378B;
+            --md-sys-color-on-primary-container: #EADDFF;
+            --md-sys-color-surface: #141218;
+            --md-sys-color-on-surface: #E6E1E5;
+            --md-sys-color-surface-variant: #211F26;
+            --md-sys-color-on-surface-variant: #CAC4D0;
+            --md-sys-color-outline: #49454F;
+            --md-sys-color-tertiary-container: #36304A;
+            --md-sys-color-on-tertiary-container: #FFD8E4;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--md-sys-color-surface);
+            color: var(--md-sys-color-on-surface);
+            padding-bottom: 60px;
+            line-height: 1.5;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* --- COMPONENT: MD3 TOP APP BAR (STALWART) --- */
+        .md-app-bar {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            height: 64px;
+            background-color: #1d1b20; /* M3 Surface Container */
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            border-bottom: 1px solid var(--md-sys-color-outline);
+            z-index: 200;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .md-app-bar__title {
+            font-size: 20px;
+            font-weight: 500;
+            color: var(--md-sys-color-on-surface);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Responsive Mobile Container viewport maxing out at clean reading widths */
+        .md-container {
+            padding: 16px;
+            max-width: 540px;
+            margin: 0 auto;
+        }
+
+        /* --- COMPONENT: MD3 ELEVATED CARD --- */
+        .md-card {
+            background-color: var(--md-sys-color-surface-variant);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+            border: 1px solid var(--md-sys-color-outline);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+
+        .md-card--primary {
+            background-color: var(--md-sys-color-primary-container);
+            color: var(--md-sys-color-on-primary-container);
+            border: none;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .md-card__title {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* --- COMPONENT: MD3 TONAL CHIPS --- */
+        .md-chip {
+            display: inline-flex;
+            align-items: center;
+            height: 32px;
+            padding: 0 16px;
+            background-color: var(--md-sys-color-tertiary-container);
+            color: var(--md-sys-color-on-tertiary-container);
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            margin-top: 10px;
+        }
+
+        /* --- COMPONENT: SECTION HEADERS --- */
+        .section-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--md-sys-color-primary);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin: 32px 0 12px 4px;
+        }
+
+        /* --- COMPONENT: MD3 STEPPER TIMELINE --- */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 10px;
+            bottom: 10px;
+            width: 2px;
+            background-color: var(--md-sys-color-outline);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 28px;
+            padding-bottom: 24px;
+        }
+
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 6px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--md-sys-color-primary);
+            box-shadow: 0 0 0 4px var(--md-sys-color-surface-variant);
+        }
+
+        .timeline-time {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--md-sys-color-primary);
+            letter-spacing: 0.5px;
+        }
+
+        .timeline-activity {
+            font-size: 16px;
+            font-weight: 500;
+            color: #ffffff;
+            margin: 3px 0;
+        }
+
+        .timeline-notes {
+            font-size: 14px;
+            color: var(--md-sys-color-on-surface-variant);
+        }
+
+        /* Custom MTA Subway Badge Visuals */
+        .subway-badge {
+            background-color: #FCCC0A;
+            color: #000000;
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 12px;
+            display: inline-block;
+            margin-left: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="md-app-bar">
+        <div class="md-app-bar__title">
+            <i class="fa-solid fa-compass" style="color: var(--md-sys-color-primary);"></i>
+            NYC Master Plan
+        </div>
+        <i class="fa-solid fa-user-gear" style="color: var(--md-sys-color-on-surface-variant);"></i>
+    </div>
+
+    <div class="md-container">
+
+        <div class="md-card md-card--primary">
+            <div class="md-card__title">
+                <i class="fa-solid fa-key"></i>
+                Courtyard Marriott WTC
+            </div>
+            <p style="font-size: 15px; font-weight: 500;">100 Greenwich St &bull; Lower Manhattan</p>
+            <p style="font-size: 13px; margin-top: 6px; opacity: 0.95; line-height: 1.4;">
+                Prepaid via Apple Pay ($0 Balance)<br>
+                Hold: $150 Incidentals Hold at desk
+            </p>
+            <div class="md-chip">May 29 – May 31, 2026</div>
+        </div>
+
+        <div class="md-card">
+            <div class="md-card__title" style="color: var(--md-sys-color-primary);">
+                <i class="fa-solid fa-bolt-lightning"></i>
+                Logistical Strategy Note
+            </div>
+            <p style="font-size: 14px; color: var(--md-sys-color-on-surface-variant);">
+                Your location on Greenwich St removes all transit delay overhead on Sunday morning. You can hand off your bags to the front desk bellhop and walk right into the Oculus before the crowds arrive.
+            </p>
+        </div>
+
+        <div class="section-title">Friday, May 29: Inbound Hub</div>
+        <div class="md-card">
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-time">9:30 PM</div>
+                    <div class="timeline-activity">Flight Touchdown at JFK</div>
+                    <div class="timeline-notes">Clear the arrivals gate and grab a direct taxi/rideshare downtown to skip midtown bottleneck traffic blocks.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">10:45 PM</div>
+                    <div class="timeline-activity">Hotel Check-In & Reunion</div>
+                    <div class="timeline-notes">Arrive at 100 Greenwich St to meet your wife. Her transit up from Brooklyn uses direct rapid local subways straight to the block.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-title">Saturday, May 30: Midtown Matrix</div>
+        <div class="md-card">
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-time">9:30 AM – 10:15 AM</div>
+                    <div class="timeline-activity">Uptown Transit Sprint</div>
+                    <div class="timeline-notes">Step out of the lobby and use the Cortlandt or Rector St stops. Take the <span class="subway-badge">N R W</span> line directly north to 5th Ave/59th St. No train transfers needed.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">10:30 AM – 1:30 PM</div>
+                    <div class="timeline-activity">MoMA Exploration Block</div>
+                    <div class="timeline-notes">3-hour deep dive. Head straight to Floors 5 & 4 right at the opening bell for the major masterpieces (Van Gogh, Monet, Warhol) before peak crowds form.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">1:30 PM – 2:45 PM</div>
+                    <div class="timeline-activity">Late Luncheon Window</div>
+                    <div class="timeline-notes">Dine around the museum corridor. Experience upscale dining at <em>The Modern</em> or run a faster classic menu session at <em>Harry's Italian</em>.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">2:45 PM – 5:30 PM</div>
+                    <div class="timeline-activity">5th Avenue Luxury Commerce</div>
+                    <div class="timeline-notes">Stroll south past St. Patrick's Cathedral. Spend the afternoon exploring the massive flagships including <strong>Louis Vuitton</strong> and Tiffany & Co.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">5:30 PM – 7:30 PM</div>
+                    <div class="timeline-activity">Bag Drop & Evening Transition</div>
+                    <div class="timeline-notes">Take the subway back down to the Courtyard to drop your items, rest up, and change into evening wear.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">7:30 PM – Late</div>
+                    <div class="timeline-activity">Dinner & Night Walk in SoHo</div>
+                    <div class="timeline-notes">Take a 5-minute rideshare up to SoHo. Enjoy the distinct historic cast-iron architecture, cobblestone corridors, and fine dining.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-title">Sunday, May 31: West Side Vector</div>
+        <div class="md-card">
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-time">8:30 AM – 8:45 AM</div>
+                    <div class="timeline-activity">Express Checkout & Bag Drop</div>
+                    <div class="timeline-notes">Complete your checkout in your Marriott app. Hand your suitcases to the hotel bellhop in the lobby. Takes 2 minutes.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">8:45 AM – 10:00 AM</div>
+                    <div class="timeline-activity">The Oculus & WTC Architecture</div>
+                    <div class="timeline-notes">Walk 1 block north. Arriving early guarantees empty spaces for clean, dramatic architectural photography before transit lines fill up.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">10:00 AM – 10:30 AM</div>
+                    <div class="timeline-activity">Transit to Meatpacking</div>
+                    <div class="timeline-notes">Walk over to Fulton St and catch the <span class="subway-badge" style="background-color: #EE352E; color: white;">A C</span> train north directly to 14th St/8th Ave.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">10:30 AM – 12:00 PM</div>
+                    <div class="timeline-activity">The Whitney Museum</div>
+                    <div class="timeline-notes">Step inside right at the 10:30 AM opening. Explore contemporary American art and take in views of the Hudson River from the outdoor terraces.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">12:00 PM – 1:15 PM</div>
+                    <div class="timeline-activity">The High Line Stroll</div>
+                    <div class="timeline-notes">Step straight from the Whitney onto the elevated park promenade. Walk north to beat the dense afternoon tourist crowd.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">1:15 PM – 2:45 PM</div>
+                    <div class="timeline-activity">Hudson Yards & Finale Lunch</div>
+                    <div class="timeline-notes">Arrive at Hudson Yards to see the Vessel. Sit down for an exceptional Spanish lunch at <em>Mercado Little Spain</em> by Chef José Andrés.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">2:45 PM – 3:30 PM</div>
+                    <div class="timeline-activity">Luggage Reclamation Point</div>
+                    <div class="timeline-notes">Grab a taxi or subway straight down the West Side highway to retrieve your stored baggage from the hotel front desk.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">3:30 PM &rarr; 6:50 PM</div>
+                    <div class="timeline-activity">JFK Airport Departure</div>
+                    <div class="timeline-notes">Grab your bags and depart via taxi or the A-train express. Leaving by 3:30 PM ensures you clear Sunday airport road gridlock. Arrive at the terminal by 4:45 PM for a seamless 6:50 PM departure.</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
